@@ -495,7 +495,7 @@
   );
   background-image: url('../img/tab2-bg.png');
   background-size: cover;
-  background-position: center;
+  background-position: left;
 }
 
 #es-loreal.es-loreal
@@ -1059,6 +1059,17 @@
   transform: rotate(90deg);
 }
 
+#es-loreal.es-loreal .es-video__left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#es-loreal.es-loreal .es-video__text {
+  display: inline;
+  text-align: center;
+}
+
 #es-loreal.es-loreal .es-video__span {
   color: var(--color-white);
   font-weight: 900;
@@ -1161,6 +1172,13 @@
 }
 
 @media screen and (min-width: 768px) {
+  #es-loreal.es-loreal .es-video__left {
+    align-items: start;
+  }
+  #es-loreal.es-loreal .es-video__text {
+    display: inline;
+    text-align: left;
+  }
   #es-loreal.es-loreal .es-results__list {
     margin-left: 42%;
     flex-direction: row;
