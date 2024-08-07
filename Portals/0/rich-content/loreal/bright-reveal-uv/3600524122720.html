@@ -195,7 +195,7 @@
 
       <div class="es-tab-content es-tab-content--3 es-tab-content--3--2">
         <p class="es-tab__main--title es-tab__main--title-2">
-          odpowiednie nawet <strong>dla skóry wrażliwej</strong>
+          odpowiedni nawet <strong>dla skóry wrażliwej</strong>
         </p>
         <div class="es-results__list es-results__list--2">
           <div class="es-results__item es-results__item--2">
@@ -256,7 +256,7 @@
         <div class="es-results__list es-results__list--4">
           <p class="es-results__list-title">STOSUJ KREM Z FILTREM CODZIENNIE</p>
           <div class="es-results__list-subtitle">
-            DLA PREWENCJI & REDUKCJI PRZEBARWIEŃ
+            DLA PREWENCJI & REDUKCJI <br />PRZEBARWIEŃ
           </div>
         </div>
       </div>
@@ -291,7 +291,7 @@
       <div class="es-slider__wrapper">
         <div class="es-slider__content">
           <div class="swiper swiper1">
-            <div class="swiper-wrapper">
+            <div class="swiper-wrapper 'background-1">
               <div class="swiper-slide">
                 <div class="es-slider__slide es-slider__slide--1">
                   <div class="es-slider__slide1__imgCtn">
@@ -305,6 +305,7 @@
                   >
                     <div class="es-slider__slide1__img--bottom">
                       <img
+                        class="es-slider__slide1--img"
                         src="https://www.ros.net.pl/Portals/0/rich-content/loreal/bright-reveal-uv/3600524122720/img/wizaz_ocena.png"
                         alt="wizaż PL: 4.8 na 5 gwiazdek, na 445 recenzji"
                       />
@@ -479,7 +480,8 @@
                 <div class="es-cross__item">
                   <div class="es-cross__img">
                     <img
-                      src="https://www.ros.net.pl/Portals/0/rich-content/loreal/bright-reveal-uv/3600524122720/img/cross-1.png" alt=""
+                      src="https://www.ros.net.pl/Portals/0/rich-content/loreal/bright-reveal-uv/3600524122720/img/cross-1.png"
+                      alt=""
                     />
                   </div>
                   <div class="es-cross__info">
@@ -502,7 +504,8 @@
                 <div class="es-cross__item">
                   <div class="es-cross__img">
                     <img
-                      src="https://www.ros.net.pl/Portals/0/rich-content/loreal/bright-reveal-uv/3600524122720/img/cross-2.png" alt=""
+                      src="https://www.ros.net.pl/Portals/0/rich-content/loreal/bright-reveal-uv/3600524122720/img/cross-2.png"
+                      alt=""
                     />
                   </div>
                   <div class="es-cross__info">
@@ -527,7 +530,8 @@
                 <div class="es-cross__item">
                   <div class="es-cross__img">
                     <img
-                      src="https://www.ros.net.pl/Portals/0/rich-content/loreal/bright-reveal-uv/3600524122720/img/cross-3.png" alt=""
+                      src="https://www.ros.net.pl/Portals/0/rich-content/loreal/bright-reveal-uv/3600524122720/img/cross-3.png"
+                      alt=""
                     />
                   </div>
                   <div class="es-cross__info">
@@ -551,7 +555,8 @@
                 <div class="es-cross__item">
                   <div class="es-cross__img">
                     <img
-                      src="https://www.ros.net.pl/Portals/0/rich-content/loreal/bright-reveal-uv/3600524122720/img/cross-4.png" alt=""
+                      src="https://www.ros.net.pl/Portals/0/rich-content/loreal/bright-reveal-uv/3600524122720/img/cross-4.png"
+                      alt=""
                     />
                   </div>
                   <div class="es-cross__info">
@@ -654,6 +659,35 @@
 </div>
 <script src="https://www.ros.net.pl/Portals/0/rich-content/loreal/bright-reveal-uv/3600524122720/js/slider.js"></script>
 <script>
+  // Pobierz element wrappera
+  const sliderWrapper = document.querySelector(
+    '#es-loreal.es-loreal .es-slider__wrapper',
+  );
+
+  function updateBackground() {
+    setTimeout(() => {
+      const activeSlide = document.querySelector('.swiper-slide-active');
+
+      if (activeSlide) {
+        const innerSlide = activeSlide.querySelector('.es-slider__slide');
+
+        if (innerSlide) {
+          if (innerSlide.classList.contains('es-slider__slide--2')) {
+            sliderWrapper.classList.remove('background-1');
+            sliderWrapper.classList.add('background-2');
+          } else {
+            sliderWrapper.classList.remove('background-2');
+            sliderWrapper.classList.add('background-1');
+          }
+        } else {
+          // console.log('No inner slide found');
+        }
+      } else {
+        // console.log('No active slide found');
+      }
+    }, 100); // Opóźnienie 100 ms
+  }
+
   const swiper = new Swiper('.swiper1', {
     loop: true,
     autoHeight: false,
@@ -666,6 +700,19 @@
       el: '.swiper1-pagination',
       clickable: true,
     },
+
+    on: {
+      init: updateBackground, // Wywołaj funkcję po inicjalizacji
+      slideChange: updateBackground, // Wywołuj funkcję przy każdej zmianie slajdu
+    },
+  });
+
+  swiper.on('init', function () {
+    updateBackground();
+  });
+
+  swiper.on('slideChange', function () {
+    updateBackground();
   });
   const swiper2 = new Swiper('.swiper2', {
     loop: true,
