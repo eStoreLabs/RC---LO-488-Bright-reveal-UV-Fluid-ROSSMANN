@@ -389,14 +389,15 @@
 
             <div class="swiper-button-prev swiper1-button-prev">
               <div class="es-slider__arrow">
-                <img src="https://www.ros.net.pl/Portals/0/rich-content/loreal/3600524122720/img/angle-left-solid.png" alt="" style="height:14px;margin-top:1px;" />
+                <img src="https://www.ros.net.pl/Portals/0/rich-content/loreal/3600524122720/img/angle-left-solid.png"
+                  alt="" style="height:14px;margin-top:1px;" />
               </div>
             </div>
 
             <div class="swiper-button-next swiper1-button-next">
               <div class="es-slider__arrow">
-                <img src="https://www.ros.net.pl/Portals/0/rich-content/loreal/3600524122720/img/angle-left-solid.png" alt=""
-                  style="transform:rotate(180deg);height:14px;margin-top:1px;" />
+                <img src="https://www.ros.net.pl/Portals/0/rich-content/loreal/3600524122720/img/angle-left-solid.png"
+                  alt="" style="transform:rotate(180deg);height:14px;margin-top:1px;" />
               </div>
             </div>
           </div>
@@ -474,7 +475,7 @@
                   <div class="es-cross__item" style="width:100%">
                     <div class="es-cross__img">
                       <img src="https://www.ros.net.pl/Portals/0/rich-content/loreal/3600524122720/img/cross-4.png"
-                        alt=""  style="padding-left:70px;padding-right:70px" />
+                        alt="" style="padding-left:70px;padding-right:70px" />
                     </div>
                     <div class="es-cross__info">
                       <p class="es-cross__series-name">Bright reveal</p>
@@ -492,14 +493,15 @@
               <div class="es-slider2__navigation">
                 <div class="swiper2-button-prev">
                   <div class="es-slider__arrow">
-                    <img src="https://www.ros.net.pl/Portals/0/rich-content/loreal/3600524122720/img/angle-turquise.png" alt="" style="height:32px" />
+                    <img src="https://www.ros.net.pl/Portals/0/rich-content/loreal/3600524122720/img/angle-turquise.png"
+                      alt="" style="height:32px" />
                   </div>
                 </div>
 
                 <div class="swiper2-button-next">
                   <div class="es-slider__arrow">
-                    <img src="https://www.ros.net.pl/Portals/0/rich-content/loreal/3600524122720/img/angle-turquise.png" alt=""
-                      style="height:32px; transform:rotate(180deg)" />
+                    <img src="https://www.ros.net.pl/Portals/0/rich-content/loreal/3600524122720/img/angle-turquise.png"
+                      alt="" style="height:32px; transform:rotate(180deg)" />
                   </div>
                 </div>
               </div>
@@ -557,74 +559,76 @@
   </div>
   <script src="https://www.ros.net.pl/Portals/0/rich-content/loreal/3600524122720/js/slider.js"></script>
   <script>
-    (() => {
-    // Pobierz element wrappera
-    const sliderWrapper = document.querySelector(
-      '#es-loreal.es-loreal .es-slider__wrapper',
-    );
+    if (!document.querySelector('.swiper1').classList.contains('swiper-initialized')) {
+      (() => {
+        // Pobierz element wrappera
+        const sliderWrapper = document.querySelector(
+          '#es-loreal.es-loreal .es-slider__wrapper',
+        );
 
-    function updateBackground() {
-      setTimeout(() => {
-        const activeSlide = document.querySelector('.swiper-slide-active');
+        function updateBackground() {
+          setTimeout(() => {
+            const activeSlide = document.querySelector('.swiper-slide-active');
 
-        if (activeSlide) {
-          const innerSlide = activeSlide.querySelector('.es-slider__slide');
+            if (activeSlide) {
+              const innerSlide = activeSlide.querySelector('.es-slider__slide');
 
-          if (innerSlide) {
-            if (innerSlide.classList.contains('es-slider__slide--2')) {
-              sliderWrapper.classList.remove('background-1');
-              sliderWrapper.classList.add('background-2');
+              if (innerSlide) {
+                if (innerSlide.classList.contains('es-slider__slide--2')) {
+                  sliderWrapper.classList.remove('background-1');
+                  sliderWrapper.classList.add('background-2');
+                } else {
+                  sliderWrapper.classList.remove('background-2');
+                  sliderWrapper.classList.add('background-1');
+                }
+              } else {
+                // console.log('No inner slide found');
+              }
             } else {
-              sliderWrapper.classList.remove('background-2');
-              sliderWrapper.classList.add('background-1');
+              // console.log('No active slide found');
             }
-          } else {
-            // console.log('No inner slide found');
-          }
-        } else {
-          // console.log('No active slide found');
+          }, 100); // Opóźnienie 100 ms
         }
-      }, 100); // Opóźnienie 100 ms
+
+        const swiper = new Swiper('.swiper1', {
+          loop: true,
+          autoHeight: true,
+
+          navigation: {
+            nextEl: '.swiper1-button-next',
+            prevEl: '.swiper1-button-prev',
+          },
+          pagination: {
+            el: '.swiper1-pagination',
+            clickable: true,
+          },
+
+          on: {
+            init: updateBackground, // Wywołaj funkcję po inicjalizacji
+            slideChange: updateBackground, // Wywołuj funkcję przy każdej zmianie slajdu
+          },
+        });
+
+        swiper.on('init', function () {
+          updateBackground();
+        });
+
+        swiper.on('slideChange', function () {
+          updateBackground();
+        });
+        const swiper2 = new Swiper('.swiper2', {
+          loop: true,
+          autoHeight: true,
+
+          navigation: {
+            nextEl: '.swiper2-button-next',
+            prevEl: '.swiper2-button-prev',
+          },
+          pagination: {
+            el: '.swiper2-pagination',
+            clickable: true,
+          },
+        });
+      })();
     }
-
-    const swiper = new Swiper('.swiper1', {
-      loop: true,
-      autoHeight: true,
-
-      navigation: {
-        nextEl: '.swiper1-button-next',
-        prevEl: '.swiper1-button-prev',
-      },
-      pagination: {
-        el: '.swiper1-pagination',
-        clickable: true,
-      },
-
-      on: {
-        init: updateBackground, // Wywołaj funkcję po inicjalizacji
-        slideChange: updateBackground, // Wywołuj funkcję przy każdej zmianie slajdu
-      },
-    });
-
-    swiper.on('init', function () {
-      updateBackground();
-    });
-
-    swiper.on('slideChange', function () {
-      updateBackground();
-    });
-    const swiper2 = new Swiper('.swiper2', {
-      loop: true,
-      autoHeight: true,
-
-      navigation: {
-        nextEl: '.swiper2-button-next',
-        prevEl: '.swiper2-button-prev',
-      },
-      pagination: {
-        el: '.swiper2-pagination',
-        clickable: true,
-      },
-    });
-  })();
   </script>
