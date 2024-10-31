@@ -559,8 +559,9 @@
   </div>
   <script src="https://www.ros.net.pl/Portals/0/rich-content/loreal/3600524122720/js/slider.js"></script>
   <script>
-    if (!document.querySelector('.swiper1').classList.contains('swiper-initialized')) {
-      (() => {
+
+    (() => {
+      if (!document.querySelector('.swiper1.swiper-initialized')) {
         // Pobierz element wrappera
         const sliderWrapper = document.querySelector(
           '#es-loreal.es-loreal .es-slider__wrapper',
@@ -629,6 +630,7 @@
             clickable: true,
           },
         });
-      })();
-    }
+      }
+    })();
+
   </script>
